@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#faf8f5" />
+  <title>Map the Day!</title>
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header id="topbar">
+      <div class="brand">
+        <img src="/assets/favicon.png" alt="" width="22" height="22" />
+        <span>Map the Day!</span>
+      </div>
+      <div class="view-tabs" role="tablist">
+        <button data-view="day" class="tab active">Day</button>
+        <button data-view="week" class="tab">Week</button>
+        <button data-view="year" class="tab">Year</button>
+      </div>
+      <div class="top-actions">
+        <button id="btn-now" title="Jump to now" aria-label="Now">⊙</button>
+        <button id="btn-theme" title="Theme" aria-label="Theme">◐</button>
+        <button id="btn-settings" title="Settings" aria-label="Settings">⚙</button>
+        <button id="btn-add" class="primary" title="Add event" aria-label="Add event">+</button>
+      </div>
+    </header>
+
+    <main id="stage">
+      <!-- DAY: circular clock -->
+      <section id="view-day" class="view active">
+        <div id="clock-wrap">
+          <svg id="clock" viewBox="-140 -140 280 280" aria-label="Day clock"></svg>
+          <div id="now-chip" class="now-chip hidden"></div>
+        </div>
+        <div id="day-list" class="side-list" aria-label="Events"></div>
+      </section>
+
+      <!-- WEEK: 7 day columns of stacked arcs -->
+      <section id="view-week" class="view">
+        <div id="week-grid"></div>
+      </section>
+
+      <!-- YEAR: month grid with density -->
+      <section id="view-year" class="view">
+        <div id="year-nav">
+          <button id="year-prev">‹</button>
+          <span id="year-label"></span>
+          <button id="year-next">›</button>
+        </div>
+        <div id="year-grid"></div>
+      </section>
+    </main>
+
+    <div id="detail-panel" class="panel hidden" role="dialog" aria-modal="true">
+      <div class="panel-card">
+        <div class="panel-head">
+          <h2 id="panel-title">New event</h2>
+          <button id="panel-close" aria-label="Close">×</button>
+        </div>
+        <form id="event-form">
+          <input type="hidden" id="f-id" />
+          <label>Title <input id="f-title" required maxlength="80" placeholder="Deep Work" /></label>
+          <div class="row">
+            <label>Start <input id="f-start" type="time" required value="09:00" /></label>
+            <label>End <input id="f-end" type="time" required value="10:00" /></label>
+          </div>
+          <label>Color
+            <div id="f-colors" class="swatches"></div>
+            <input type="hidden" id="f-color" />
+          </label>
+          <label>Note <textarea id="f-note" rows="2" maxlength="280" placeholder="Optional note"></textarea></label>
+          <fieldset>
+            <legend>Checklist</legend>
+            <div id="f-checklist"></div>
+            <div class="add-check">
+              <input id="f-check-input" placeholder="Add item…" />
+              <button type="button" id="f-check-add">Add</button>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Stickers</legend>
+            <div class="sticker-row">
+              <input id="f-sticker" maxlength="4" placeholder="🏖️" />
+              <button type="button" id="f-sticker-add">Place</button>
+            </div>
+            <div id="f-stickers" class="sticker-list"></div>
+          </fieldset>
+          <div class="panel-actions">
+            <button type="button" id="f-delete" class="danger hidden">Delete</button>
+            <span class="spacer"></span>
+            <button type="button" id="f-cancel">Cancel</button>
+            <button type="submit" class="primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="theme-panel" class="panel hidden" role="dialog">
+      <div class="panel-card small">
+        <div class="panel-head">
+          <h2>Theme</h2>
+          <button id="theme-close" aria-label="Close">×</button>
+        </div>
+        <div id="theme-grid" class="theme-grid"></div>
+        <label class="toggle"><input type="checkbox" id="opt-stickers" checked /> Show stickers</label>
+        <label class="toggle"><input type="checkbox" id="opt-mode-h24" /> 24-hour clock</label>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+  </div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "map-the-day",
+  "version": "1.0.0",
+  "description": "Map the Day! \u2014 a planner that's just a clock. Draw your day as colorful arcs. With CLI and MCP for AI agents.",
+  "type": "module",
+  "bin": {
+    "maptheday": "./src/cli/index.js",
+    "mtd": "./src/cli/index.js",
+    "maptheday-mcp": "./src/mcp/index.js"
+  },
+  "scripts": {
+    "start": "node src/web/server.js",
+    "serve": "node src/web/server.js",
+    "cli": "node src/cli/index.js",
+    "mcp": "node src/mcp/index.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.24.0"
+  }
+}
