@@ -7,7 +7,7 @@ import { listThemes, getTheme, pickColor } from "../core/themes.js";
 import { eventSummary, sortEvents, formatDuration, eventsAt } from "../core/events.js";
 import { nowMinutes, minutesToTime, timeToMinutes } from "../core/clock.js";
 
-const HELP = `maptheday (tp) — draw your day as colorful arcs around a clock
+const HELP = `maptheday (mtd) — draw your day as colorful arcs around a clock
 
 USAGE
   tp <command> [options]
