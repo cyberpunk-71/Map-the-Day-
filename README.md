@@ -113,4 +113,4 @@ POST   /api/seed
 
 ## License
 
-MIT — clone for learning; original app by Vineet Kapil.
+MIT
